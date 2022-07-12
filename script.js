@@ -7,9 +7,12 @@ function computerPlay() {
 
 function playRound(playerSelection, computerSelection) {
     computerSelection = computerPlay();
-    playerSelection = playerSelection.toLowerCase();
     let caseInsensitivePlayer = playerSelection[0].toUpperCase() + 
         playerSelection.slice(1)
+        
+    if (playerSelection != null) {
+        playerSelection = playerSelection.toLowerCase();
+    }
     
     if (
         computerSelection === "Rock" && playerSelection === "scissors" ||
@@ -18,10 +21,16 @@ function playRound(playerSelection, computerSelection) {
         ) {
         return `Computer won! ${computerSelection} beats ${caseInsensitivePlayer}.`
     } else if (
-        computerSelection === playerSelection
+        playerSelection === "rock" && computerSelection === "Scissors" ||
+        playerSelection === "paper" && computerSelection === "Rock" || 
+        playerSelection === "scissors" && computerSelection === "Paper"
         ) {
-            return `It's a tie, you and computer chose ${computerSelection}.`
-        } else {
             return `You won! ${caseInsensitivePlayer} beats ${computerSelection}.`
+        } else if (
+            playerSelection === computerSelection.toLowerCase()
+        ) {
+            return `It's a tie, you and computer chose ${playerSelection}.`
+        } else {
+            return `You didn't choose an item to fight with`
         }
 }
