@@ -1,4 +1,4 @@
-// We put those variables in global scop, so they could be available 
+// We put those variables in global scope, so they could be available 
 // for 2 functions;
 let playerScore = 0;
 let computerScore = 0;
@@ -49,7 +49,7 @@ function playRound(playerSelection, computerSelection) {
         } else if (
             playerSelection === null || playerSelection === undefined 
         ) {
-            return `You didn't choose an item to fight with`
+            return `You didn't choose a weapon to fight with`
         } else {
             return "You can't fight with that"
         }
@@ -63,7 +63,11 @@ function game() {
         let computerSelection = computerPlay();        
 
         console.log("Round " + i)
-        console.log(`You chose: ${playerSelection}`);
+        if(playerSelection === null || playerSelection === " ") {
+            console.log("You chose : no weapon")
+        } else {
+            console.log(`You chose: ${playerSelection}`);
+        }
         console.log(`Computer chose: ${computerSelection}`);
         console.log(playRound(playerSelection, computerSelection));
         console.log(`Score: \nYou: ${playerScore} Computer: ${computerScore}`)
