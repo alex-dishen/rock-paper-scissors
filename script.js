@@ -1,23 +1,21 @@
-// We put those variables in global scope, so they could be available 
-// for 2 functions;
+/*This variables are used by playRound() and game() functions. That is why 
+thy are in global scope*/
 let playerScore = 0;
 let computerScore = 0;
-// Function to return random name 
+// Returns random name 
 function computerPlay() {
     const items = ["Rock", "Paper", "Scissors"];
-    // At the and we multiply random with items.length to allow 
-    // function random go through all items in variable items
     let randomItem = items[Math.floor(Math.random() * items.length)];
     return randomItem;
 } 
 
 function playRound(playerSelection, computerSelection) {  
-    // Condition bellow prevents applying .toLowerCase() to null statement
-    // what stops is from throwing an error as .toLowerCase can't be 
-    // applied to null   
+    /* toLowerCase() can't be applied to lower case, it throws an error.
+    To prevent toLowerCase() being applied I used if...else condition*/   
     let caseInsensitivePlayer = (playerSelection != null) ? playerSelection = 
         playerSelection.toLowerCase() : playerSelection;
-    // Condition bellow converts the first element of the string to upper case
+    /* After toLowerCase function applied I get the output in small letters.
+    But I need it to output with first letter being capital*/
     if (playerSelection != null) {
         caseInsensitivePlayer = caseInsensitivePlayer[0].toUpperCase() + 
         caseInsensitivePlayer.slice(1);
@@ -58,8 +56,6 @@ function playRound(playerSelection, computerSelection) {
 function game() {
     for (let i = 1; i < 6; i++) {
         let playerSelection = prompt("Rock, Paper or Scissors?", " ")
-        // We assigned function computerPlay() to variable computerSelection 
-        // to be able to run the function in a loop 5 times
         let computerSelection = computerPlay();        
 
         console.log("Round " + i)
