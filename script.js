@@ -77,5 +77,4 @@ function game() {
         console.log("Friendship WON!!!!!")
     }
 }
-
 game()
