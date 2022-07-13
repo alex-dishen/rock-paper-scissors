@@ -1,35 +1,44 @@
-// Function that randomly returns rock paper or scissors
+// We put those variables in global scop, so they could be available 
+// for 2 functions;
 let playerScore = 0;
 let computerScore = 0;
-
+// Function to return random name 
 function computerPlay() {
     const items = ["Rock", "Paper", "Scissors"];
+    // At the and we multiply random with items.length to allow 
+    // function random go through all items in variable items
     let randomItem = items[Math.floor(Math.random() * items.length)];
     return randomItem;
 } 
 
-function playRound(playerSelection, computerSelection) {        
+function playRound(playerSelection, computerSelection) {  
+    // Condition bellow prevents applying .toLowerCase() to null statement
+    // what stops is from throwing an error as .toLowerCase can't be 
+    // applied to null   
     if (playerSelection != null) {
         playerSelection = playerSelection.toLowerCase();
     }
     
     if (
+        //Computer wins
         computerSelection === "Rock" && playerSelection === "scissors" ||
         computerSelection === "Paper" && playerSelection === "rock" || 
         computerSelection === "Scissors" && playerSelection === "paper"
         ) {
-        computerScore++
+            ++computerScore
 
-        return `${computerSelection} beats ${playerSelection}.`
+            return `${computerSelection} beats ${playerSelection}.`
     } else if (
+        //Player wins
         playerSelection === "rock" && computerSelection === "Scissors" ||
         playerSelection === "paper" && computerSelection === "Rock" || 
         playerSelection === "scissors" && computerSelection === "Paper"
         ) {
-            playerScore++
+            ++playerScore
 
             return `${playerSelection} beats ${computerSelection}.`
         } else if (
+            // Tie
             playerSelection === computerSelection.toLowerCase()
         ) {
             return `It's a tie, you and computer chose ${playerSelection}.`
@@ -39,10 +48,13 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function game() {
-    for (let i = 0; i < 5; i++) {
+    for (let i = 1; i < 6; i++) {
         let playerSelection = prompt("Rock, Paper or Scissors?")
+        // We assigned function computerPlay() to variable computerSelection 
+        // to be able to run the function in a loop 5 times
         let computerSelection = computerPlay();        
 
+        console.log("Round " + i)
         console.log(`You chose: ${playerSelection}`);
         console.log(`Computer chose: ${computerSelection}`);
         console.log(playRound(playerSelection, computerSelection));
@@ -58,4 +70,4 @@ function game() {
     }
 }
 
-game()
+// game()
