@@ -15,8 +15,12 @@ function playRound(playerSelection, computerSelection) {
     // Condition bellow prevents applying .toLowerCase() to null statement
     // what stops is from throwing an error as .toLowerCase can't be 
     // applied to null   
+    let caseInsensitivePlayer = (playerSelection != null) ? playerSelection = 
+        playerSelection.toLowerCase() : playerSelection;
+    // Condition bellow converts the first element of the string to upper case
     if (playerSelection != null) {
-        playerSelection = playerSelection.toLowerCase();
+        caseInsensitivePlayer = caseInsensitivePlayer[0].toUpperCase() + 
+        caseInsensitivePlayer.slice(1);
     }
     
     if (
@@ -27,7 +31,7 @@ function playRound(playerSelection, computerSelection) {
         ) {
             ++computerScore
 
-            return `${computerSelection} beats ${playerSelection}.`
+            return `${computerSelection} beats ${caseInsensitivePlayer}.`
     } else if (
         //Player wins
         playerSelection === "rock" && computerSelection === "Scissors" ||
@@ -36,20 +40,24 @@ function playRound(playerSelection, computerSelection) {
         ) {
             ++playerScore
 
-            return `${playerSelection} beats ${computerSelection}.`
+            return `${caseInsensitivePlayer} beats ${computerSelection}.`
         } else if (
             // Tie
             playerSelection === computerSelection.toLowerCase()
         ) {
-            return `It's a tie, you and computer chose ${playerSelection}.`
-        } else {
+            return `It's a tie, you and computer chose ${caseInsensitivePlayer}.`
+        } else if (
+            playerSelection === null || playerSelection === undefined 
+        ) {
             return `You didn't choose an item to fight with`
+        } else {
+            return "You can't fight with that"
         }
 }
 
 function game() {
     for (let i = 1; i < 6; i++) {
-        let playerSelection = prompt("Rock, Paper or Scissors?")
+        let playerSelection = prompt("Rock, Paper or Scissors?", " ")
         // We assigned function computerPlay() to variable computerSelection 
         // to be able to run the function in a loop 5 times
         let computerSelection = computerPlay();        
@@ -70,4 +78,4 @@ function game() {
     }
 }
 
-// game()
+game()
