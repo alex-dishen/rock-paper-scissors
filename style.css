@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body {
+    font-family: 'Russo One', sans-serif;
+    margin: 0;
+    height: 100vh;
+    background-color: pink;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    font-family: 'Press Start 2P', cursive;
+    padding: 30px;
+}
+
+.main {
+    flex: 1;
+}
+
+.scoreboard {
+    text-align: center;
+}
+
+.scoreinfo {
+    font-size: 32px;
+    font-weight: bold;
+    margin: 35px 0px 14px 0px;
+}
+
+.scoremessage {
+    font-size: 20px;
+    margin: 0;
+}
+
+.scorecontainer {
+    display: flex;
+    justify-content: center;
+    gap: 95px;
+    margin: 50px 0px;
+}
+
+.output {
+    height: 110px;
+    width: auto;
+}
+
+p {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.buttons {
+    display: flex;
+    gap: 50px;
+
+}
+
+button {
+    border: none;
+    background-color: pink;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.rock,
+.paper,
+.scissors {
+    height: 170px;
+    width: 170px;
+    background-size: 172px;
+}
+
+.rock {
+    background-image: url(/img/rock-hand.png);
+}
+
+.paper {
+    background-image: url(/img/paper-hand.png);
+}
+
+.scissors {
+    background-image: url(/img/scissors-hand.png);
+}
+
+
+footer {
+    padding: 10px;
+    font-size: 18px;
+}
+
+.github {
+    height: 22px;
+    margin-left: 6px;
+    border-radius: 50%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.github:hover {
+    transform: rotate(360deg) scale(1.2);
+}

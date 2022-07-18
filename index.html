@@ -4,10 +4,43 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./rock-hand.ico" type="image/x-icon">
     <title>Rock Paper Scissors</title>
-    <script src="/script.js"></script>
+    <link rel="stylesheet" href="./style.css">
+    <script src="./script.js" defer></script>
 </head>
 <body>
+    <header>
+        <h1>ROCK PAPER SCISSORS</h1>
+    </header>
     
+    <div class="main">
+        <div class="scoreboard">
+            <h2 class="scoreinfo">Choose your weapon</h2>
+            <h3 class="scoremessage">First to score 5 points wins the game</h3>
+
+            <div class="scorecontainer">
+                <div class="score">
+                    <img src="./img/question-mark.png" class="output">
+                    <p class="player">Player: </p>
+                </div>
+
+                <div class="score">
+                    <img src="./img/question-mark.png" class="output">
+                    <p class="pc">Computer: </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="buttons">
+            <button class="rock"></button>
+            <button class="paper"></button>
+            <button class="scissors"></button>
+        </div>
+    </div>
+
+    <footer>Copyright © 2022 alex-dishen
+        <a href="" target=""><img src="./img/github.png" class="github"></a>
+    </footer>
 </body>
 </html>
