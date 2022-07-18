@@ -1,32 +1,39 @@
-@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 body {
-    font-family: 'Russo One', sans-serif;
+    background: linear-gradient(143deg, rgba(33,26,154,1) 0%, rgba(90,90,238,1) 38%, rgba(181,42,255,1) 100%);
+    color: #ffeeff;
+    font-family: 'Roboto', sans-serif;
     margin: 0;
     height: 100vh;
-    background-color: pink;
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
+
+/* HEAD */
 
 header {
     font-family: 'Press Start 2P', cursive;
+    text-align: center;
     padding: 30px;
+}
+
+/* MAIN */
+
+.main, 
+.scoreboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .main {
     flex: 1;
 }
 
-.scoreboard {
-    text-align: center;
-}
-
 .scoreinfo {
     font-size: 32px;
-    font-weight: bold;
     margin: 35px 0px 14px 0px;
 }
 
@@ -40,6 +47,10 @@ header {
     justify-content: center;
     gap: 95px;
     margin: 50px 0px;
+}
+
+.score {
+    text-align: center;
 }
 
 .output {
@@ -60,10 +71,20 @@ p {
 
 button {
     border: none;
-    background-color: pink;
+    background-color: rgba(90,90,238,1);
     cursor: pointer;
     border-radius: 50%;
 }
+
+button:hover {
+    box-shadow:  22px 22px 44px #393996, -22px -22px 44px #7b7bff;
+    transform: scale(1.1);
+
+}
+
+button:active {
+    transform: translateY(4px);
+  }
 
 .rock,
 .paper,
@@ -85,8 +106,14 @@ button {
     background-image: url(/img/scissors-hand.png);
 }
 
+.scissors:hover {
+    box-shadow:  22px 22px 44px #4d3b96, -22px -22px 44px #a77fff;
+}
+
+/* FOOTER */
 
 footer {
+    text-align: center;
     padding: 10px;
     font-size: 18px;
 }
@@ -94,8 +121,7 @@ footer {
 .github {
     height: 22px;
     margin-left: 6px;
-    border-radius: 50%;
-    transition: transform 0.5s ease-in-out;
+    transition: transform 0.4s ease-in-out;
 }
 
 .github:hover {
