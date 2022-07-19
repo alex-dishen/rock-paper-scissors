@@ -53,8 +53,8 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function game() {
-    const winRound = document.querySelector('.scoreinfo')
-    const winner = document.querySelector('.scoremessage')
+    const winRound = document.querySelector('.scoreinfo');
+    const winner = document.querySelector('.scoremessage');
     const pcChoice = document.querySelector('.pcsign');
     const playerChoice = document.querySelector('.playersign');
     const pc = document.querySelector('.pc-score');
@@ -78,6 +78,29 @@ function game() {
                 let computerSelection = computerPlay();
                 winner.textContent = playRound(playerSelection, computerSelection);
                 winRound.textContent = setWinner();
+                switch (playerSelection) {
+                    case "rock":
+                        playerChoice.setAttribute("src", "./img/rock-hand.png");
+                        break;
+                    case "paper": 
+                        playerChoice.setAttribute("src", "./img/paper-hand.png");
+                        break;
+                    case "scissors":
+                        playerChoice.setAttribute("src", "./img/scissors-hand.png");
+                        break;
+                }
+
+                switch (computerSelection) {
+                    case "Rock":
+                        pcChoice.setAttribute("src", "./img/rock-hand.png");
+                        break;
+                    case "Paper": 
+                        pcChoice.setAttribute("src", "./img/paper-hand.png");
+                        break;
+                    case "Scissors":
+                        pcChoice.setAttribute("src", "./img/scissors-hand.png");
+                        break;
+                }
             }
         })
     })
