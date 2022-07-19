@@ -1,9 +1,7 @@
-/*This variables are used by playRound() and game() functions. That is why 
-thy are in global scope*/
 let playerScore = 0;
 let computerScore = 0;
 let roundPlayer = '';
-// Returns random name 
+
 function computerPlay() {
     const items = ["Rock", "Paper", "Scissors"];
     let randomItem = items[Math.floor(Math.random() * items.length)];
@@ -11,12 +9,10 @@ function computerPlay() {
 } 
 
 function playRound(playerSelection, computerSelection) {  
-    /* toLowerCase() can't be applied to lower case, it throws an error.
-    To prevent toLowerCase() being applied I used if...else condition*/   
+     
     let caseInsensitivePlayer = (playerSelection != null) ? playerSelection = 
         playerSelection.toLowerCase() : playerSelection;
-    /* After toLowerCase function applied I get the output in small letters.
-    But I need it to output with first letter being capital*/
+    
     if (playerSelection != null) {
         caseInsensitivePlayer = caseInsensitivePlayer[0].toUpperCase() + 
         caseInsensitivePlayer.slice(1);
@@ -52,32 +48,37 @@ function playRound(playerSelection, computerSelection) {
         } 
 }
 
+function setWinner() {
+  if (roundPlayer === "player") {
+          return "You won!";
+      } else if (roundPlayer === "computer"){
+          return "Computer won!";
+      } else {
+          return "It's a tie";
+      }
+}
+
 function game() {
-    const winRound = document.querySelector('.scoreinfo');
-    const winner = document.querySelector('.scoremessage');
+    const scoreInfo = document.querySelector('.scoreinfo');
+    const scoreMessage = document.querySelector('.scoremessage');
     const pcChoice = document.querySelector('.pcsign');
     const playerChoice = document.querySelector('.playersign');
-    const pc = document.querySelector('.pc-score');
-    const player = document.querySelector('.player-score');
+    const pcScore = document.querySelector('.pcscore');
+    const userScore = document.querySelector('.playerscore');
     const btn = document.querySelectorAll('button');
 
-    function setWinner() {
-        if (roundPlayer === "player") {
-                return "You won!";
-            } else if (roundPlayer === "computer"){
-                return "Computer won!";
-            } else {
-                return "It's a tie";
-            }
+    function disableButtons() {
+      btn.forEach(elem => {
+          elem.disabled = true
+      })
     }
 
     btn.forEach((button) => {
         let playerSelection = button.className;
         button.addEventListener('click', () => {
-            for(let i = 0; i < 1; i++) {
                 let computerSelection = computerPlay();
-                winner.textContent = playRound(playerSelection, computerSelection);
-                winRound.textContent = setWinner();
+                scoreMessage.textContent = playRound(playerSelection, computerSelection);
+                scoreInfo.textContent = setWinner();
                 switch (playerSelection) {
                     case "rock":
                         playerChoice.setAttribute("src", "./img/rock-hand.png");
@@ -101,10 +102,21 @@ function game() {
                         pcChoice.setAttribute("src", "./img/scissors-hand.png");
                         break;
                 }
-                pc.textContent = `Computer: ${computerScore}`
-                player.textContent = `Player: ${playerScore}`
+                pcScore.textContent = `Computer: ${computerScore}`;
+                userScore.textContent = `Player: ${playerScore}`;
+
+                if (playerScore === 5) {
+                  scoreInfo.textContent = "Game Over";
+                  scoreMessage.textContent = "You Won The Game";
+                  disableButtons();
+
+                } else if (computerScore === 5) {
+                  scoreInfo.textContent = "Game Over";
+                  scoreMessage.textContent = "Computer Won The Game";
+                  disableButtons();
+                }
             }
-        })
+        )
     })
 }
 
