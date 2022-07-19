@@ -72,9 +72,9 @@ function game() {
     }
 
     btn.forEach((button) => {
+        let playerSelection = button.className;
         button.addEventListener('click', () => {
             for(let i = 0; i < 1; i++) {
-                let playerSelection = button.className;
                 let computerSelection = computerPlay();
                 winner.textContent = playRound(playerSelection, computerSelection);
                 winRound.textContent = setWinner();
@@ -101,28 +101,11 @@ function game() {
                         pcChoice.setAttribute("src", "./img/scissors-hand.png");
                         break;
                 }
+                pc.textContent = `Computer: ${computerScore}`
+                player.textContent = `Player: ${playerScore}`
             }
         })
     })
-
-    // for (let i = 1; i < 6; i++) {
-    //     console.log("Round " + i)
-    //     if(playerSelection === null || playerSelection === " ") {
-    //         console.log("You chose : no weapon")
-    //     } else {
-    //         console.log(`You chose: ${playerSelection}`);
-    //     }
-    //     console.log(`Computer chose: ${computerSelection}`);
-    //     console.log(playRound(playerSelection, computerSelection));
-    //     console.log(`Score: \nYou: ${playerScore} Computer: ${computerScore}`)
-    //     console.log("-------------------------");
-    // // }
-    // if (playerScore > computerScore) {
-    //     console.log("You won!!!!!")
-    // } else if (computerScore > playerScore){
-    //     console.log("Computer won!!!!!!!")
-    // } else {
-    //     console.log("Friendship WON!!!!!")
-    // }
 }
+
 game()
