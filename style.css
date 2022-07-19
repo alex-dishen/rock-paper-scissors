@@ -45,7 +45,7 @@ header {
 .scorecontainer {
     display: flex;
     justify-content: center;
-    gap: 95px;
+    gap: 130px;
     margin: 50px 0px;
 }
 
@@ -78,12 +78,12 @@ button {
 
 button:hover {
     box-shadow:  22px 22px 44px #393996, -22px -22px 44px #7b7bff;
-    transform: scale(1.1);
+    transform: scale(1.03);
 
 }
 
 button:active {
-    transform: translateY(4px);
+    transform: translateY(2px);
   }
 
 .rock,

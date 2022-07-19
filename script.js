@@ -1,101 +1,105 @@
-// /*This variables are used by playRound() and game() functions. That is why 
-// thy are in global scope*/
-// let playerScore = 0;
-// let computerScore = 0;
-// // Returns random name 
-// function computerPlay() {
-//     const items = ["Rock", "Paper", "Scissors"];
-//     let randomItem = items[Math.floor(Math.random() * items.length)];
-//     return randomItem;
-// } 
+/*This variables are used by playRound() and game() functions. That is why 
+thy are in global scope*/
+let playerScore = 0;
+let computerScore = 0;
+let roundPlayer = '';
+// Returns random name 
+function computerPlay() {
+    const items = ["Rock", "Paper", "Scissors"];
+    let randomItem = items[Math.floor(Math.random() * items.length)];
+    return randomItem;
+} 
 
-// function playRound(playerSelection, computerSelection) {  
-//     /* toLowerCase() can't be applied to lower case, it throws an error.
-//     To prevent toLowerCase() being applied I used if...else condition*/   
-//     let caseInsensitivePlayer = (playerSelection != null) ? playerSelection = 
-//         playerSelection.toLowerCase() : playerSelection;
-//     /* After toLowerCase function applied I get the output in small letters.
-//     But I need it to output with first letter being capital*/
-//     if (playerSelection != null) {
-//         caseInsensitivePlayer = caseInsensitivePlayer[0].toUpperCase() + 
-//         caseInsensitivePlayer.slice(1);
-//     }
+function playRound(playerSelection, computerSelection) {  
+    /* toLowerCase() can't be applied to lower case, it throws an error.
+    To prevent toLowerCase() being applied I used if...else condition*/   
+    let caseInsensitivePlayer = (playerSelection != null) ? playerSelection = 
+        playerSelection.toLowerCase() : playerSelection;
+    /* After toLowerCase function applied I get the output in small letters.
+    But I need it to output with first letter being capital*/
+    if (playerSelection != null) {
+        caseInsensitivePlayer = caseInsensitivePlayer[0].toUpperCase() + 
+        caseInsensitivePlayer.slice(1);
+    }
     
-//     if (
-//         //Computer wins
-//         computerSelection === "Rock" && playerSelection === "scissors" ||
-//         computerSelection === "Paper" && playerSelection === "rock" || 
-//         computerSelection === "Scissors" && playerSelection === "paper"
-//         ) {
-//             ++computerScore
+    if (
+        //Computer wins
+        computerSelection === "Rock" && playerSelection === "scissors" ||
+        computerSelection === "Paper" && playerSelection === "rock" || 
+        computerSelection === "Scissors" && playerSelection === "paper"
+        ) {
+            computerScore++
+            roundPlayer = 'computer'
 
-//             return `${computerSelection} beats ${caseInsensitivePlayer}.`
-//     } else if (
-//         //Player wins
-//         playerSelection === "rock" && computerSelection === "Scissors" ||
-//         playerSelection === "paper" && computerSelection === "Rock" || 
-//         playerSelection === "scissors" && computerSelection === "Paper"
-//         ) {
-//             ++playerScore
+            return `${caseInsensitivePlayer} is beaten by ${computerSelection}.`
+    } else if (
+        //Player wins
+        playerSelection === "rock" && computerSelection === "Scissors" ||
+        playerSelection === "paper" && computerSelection === "Rock" || 
+        playerSelection === "scissors" && computerSelection === "Paper"
+        ) {
+            playerScore++
+            roundPlayer = "player"
 
-//             return `${caseInsensitivePlayer} beats ${computerSelection}.`
-//         } else if (
-//             // Tie
-//             playerSelection === computerSelection.toLowerCase()
-//         ) {
-//             return `It's a tie, you and computer chose ${caseInsensitivePlayer}.`
-//         } else if (
-//             playerSelection === null || playerSelection === undefined 
-//         ) {
-//             return `You didn't choose a weapon to fight with`
-//         } else {
-//             return "You can't fight with that"
-//         }
-// }
+            return `${caseInsensitivePlayer} beats ${computerSelection}.`
+        } else if (
+            // Tie
+            playerSelection === computerSelection.toLowerCase()
+        ) {
+            roundPlayer = "tie"
 
-// function game() {
-//     let computerSelection = computerPlay();
-//     const btn = document.querySelectorAll('button');
-//     const div = document.querySelector('div');
-//     const result = document.querySelector('.result');
-//     const score = document.querySelector('.score');
-//     const winner = document.createElement('p');
+            return `You and computer chose ${computerSelection}.`
+        } 
+}
 
-//     btn.forEach((button) => {
-//         let playerSelection = button.value;
-//         button.addEventListener('click', () => {
-//             result.textContent = playRound(playerSelection, computerSelection);
-//             score.textContent = playerScore;
-//             div.appendChild(result)
-//             div.appendChild(score)
+function game() {
+    const winRound = document.querySelector('.scoreinfo')
+    const winner = document.querySelector('.scoremessage')
+    const pcChoice = document.querySelector('.pcsign');
+    const playerChoice = document.querySelector('.playersign');
+    const pc = document.querySelector('.pc-score');
+    const player = document.querySelector('.player-score');
+    const btn = document.querySelectorAll('button');
 
-//             if (playerScore === 5) {
-//                 winner.textContent = "user won"
-//             } else if (computerScore === 5) {
-//                 winner.textContent = "computer won"
-//             }
-//             div.appendChild(winner)
-//         })
-//     })
+    function setWinner() {
+        if (roundPlayer === "player") {
+                return "You won!";
+            } else if (roundPlayer === "computer"){
+                return "Computer won!";
+            } else {
+                return "It's a tie";
+            }
+    }
 
-//     // for (let i = 1; i < 6; i++) {
-//     //     console.log("Round " + i)
-//     //     if(playerSelection === null || playerSelection === " ") {
-//     //         console.log("You chose : no weapon")
-//     //     } else {
-//     //         console.log(`You chose: ${playerSelection}`);
-//     //     }
-//     //     console.log(`Computer chose: ${computerSelection}`);
-//     //     console.log(playRound(playerSelection, computerSelection));
-//     //     console.log(`Score: \nYou: ${playerScore} Computer: ${computerScore}`)
-//     //     console.log("-------------------------");
-//     // // }
-//     // if (playerScore > computerScore) {
-//     //     console.log("You won!!!!!")
-//     // } else if (computerScore > playerScore){
-//     //     console.log("Computer won!!!!!!!")
-//     // } else {
-//     //     console.log("Friendship WON!!!!!")
-//     // }
-// }
-// game()
+    btn.forEach((button) => {
+        button.addEventListener('click', () => {
+            for(let i = 0; i < 1; i++) {
+                let playerSelection = button.className;
+                let computerSelection = computerPlay();
+                winner.textContent = playRound(playerSelection, computerSelection);
+                winRound.textContent = setWinner();
+            }
+        })
+    })
+
+    // for (let i = 1; i < 6; i++) {
+    //     console.log("Round " + i)
+    //     if(playerSelection === null || playerSelection === " ") {
+    //         console.log("You chose : no weapon")
+    //     } else {
+    //         console.log(`You chose: ${playerSelection}`);
+    //     }
+    //     console.log(`Computer chose: ${computerSelection}`);
+    //     console.log(playRound(playerSelection, computerSelection));
+    //     console.log(`Score: \nYou: ${playerScore} Computer: ${computerScore}`)
+    //     console.log("-------------------------");
+    // // }
+    // if (playerScore > computerScore) {
+    //     console.log("You won!!!!!")
+    // } else if (computerScore > playerScore){
+    //     console.log("Computer won!!!!!!!")
+    // } else {
+    //     console.log("Friendship WON!!!!!")
+    // }
+}
+game()
