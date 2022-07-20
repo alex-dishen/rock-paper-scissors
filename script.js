@@ -46,6 +46,7 @@ const btnRock = document.querySelector('.rock');
 const btnPaper = document.querySelector('.paper');
 const btnScissors = document.querySelector('.scissors');
 const overlay = document.getElementById('overlay');
+const modal = document.querySelector('.modal');
 const btnRestart = document.querySelector('#restart');
 const winnerPara = document.querySelector('.winnerpara');
 
@@ -94,9 +95,13 @@ function decideWhoWon() {
 
 function stateAbsoluteWinner() {
         overlay.style.display = 'block';
+        modal.classList.add('active')
         winnerPara.textContent = decideWhoWon();
         btnRestart.addEventListener('click', () => {window.location.reload();})
-        overlay.addEventListener('click', () => {overlay.style.display = 'none';})
+        overlay.addEventListener('click', () => {
+            overlay.style.display = 'none';
+            modal.classList.remove('active');
+        })
 }
 
 function play(playerSelection) {
