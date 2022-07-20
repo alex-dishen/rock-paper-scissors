@@ -8,39 +8,31 @@ function computerPlay() {
     return randomItem;
 } 
 
-function playRound(playerSelection, computerSelection) {  
-     
-    let caseInsensitivePlayer = (playerSelection != null) ? playerSelection = 
-        playerSelection.toLowerCase() : playerSelection;
-    
-    if (playerSelection != null) {
-        caseInsensitivePlayer = caseInsensitivePlayer[0].toUpperCase() + 
-        caseInsensitivePlayer.slice(1);
-    }
-    
+function playRound(playerSelection, computerSelection) {
+    playerSelection = playerSelection[0].toLocaleUpperCase() + 
+                      playerSelection.slice(1);
+
     if (
-        //Computer wins
-        computerSelection === "Rock" && playerSelection === "scissors" ||
-        computerSelection === "Paper" && playerSelection === "rock" || 
-        computerSelection === "Scissors" && playerSelection === "paper"
+        playerSelection === "Rock" && computerSelection === "Scissors" ||
+        playerSelection === "Paper" && computerSelection === "Rock" || 
+        playerSelection === "Scissors" && computerSelection === "Paper"
+        ) {
+            playerScore++
+            roundPlayer = "player"
+        
+            return `${playerSelection} beats ${computerSelection}.`
+
+    } else if (
+        computerSelection === "Rock" && playerSelection === "Scissors" ||
+        computerSelection === "Paper" && playerSelection === "Rock" || 
+        computerSelection === "Scissors" && playerSelection === "Paper"
         ) {
             computerScore++
             roundPlayer = 'computer'
 
-            return `${caseInsensitivePlayer} is beaten by ${computerSelection}.`
-    } else if (
-        //Player wins
-        playerSelection === "rock" && computerSelection === "Scissors" ||
-        playerSelection === "paper" && computerSelection === "Rock" || 
-        playerSelection === "scissors" && computerSelection === "Paper"
-        ) {
-            playerScore++
-            roundPlayer = "player"
-
-            return `${caseInsensitivePlayer} beats ${computerSelection}.`
+            return `${playerSelection} is beaten by ${computerSelection}.`
         } else if (
-            // Tie
-            playerSelection === computerSelection.toLowerCase()
+            playerSelection === computerSelection
         ) {
             roundPlayer = "tie"
 
@@ -66,12 +58,6 @@ function game() {
     const pcScore = document.querySelector('.pcscore');
     const userScore = document.querySelector('.playerscore');
     const btn = document.querySelectorAll('button');
-
-    function disableButtons() {
-      btn.forEach(elem => {
-          elem.disabled = true
-      })
-    }
 
     btn.forEach((button) => {
         let playerSelection = button.className;
@@ -104,17 +90,6 @@ function game() {
                 }
                 pcScore.textContent = `Computer: ${computerScore}`;
                 userScore.textContent = `Player: ${playerScore}`;
-
-                if (playerScore === 5) {
-                  scoreInfo.textContent = "Game Over";
-                  scoreMessage.textContent = "You Won The Game";
-                  disableButtons();
-
-                } else if (computerScore === 5) {
-                  scoreInfo.textContent = "Game Over";
-                  scoreMessage.textContent = "Computer Won The Game";
-                  disableButtons();
-                }
             }
         )
     })
