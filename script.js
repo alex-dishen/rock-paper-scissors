@@ -45,6 +45,9 @@ const userScore = document.querySelector('.playerscore');
 const btnRock = document.querySelector('.rock');
 const btnPaper = document.querySelector('.paper');
 const btnScissors = document.querySelector('.scissors');
+const overlay = document.getElementById('overlay');
+const btnRestart = document.querySelector('#restart');
+const winnerPara = document.querySelector('.winnerpara');
 
 function setWinner() {
   if (roundPlayer === 'player') {
@@ -81,17 +84,36 @@ function changeChosenSigns(playerSelection, computerSelection) {
     }
 }
 
-function play(playerSelection) {
-    let computerSelection = computerPlay();
-    scoreMessage.textContent = playRound(playerSelection, computerSelection);
-    scoreInfo.textContent = setWinner();
-    changeChosenSigns(playerSelection, computerSelection);
-    pcScore.textContent = `Computer: ${computerScore}`;
-    userScore.textContent = `Player: ${playerScore}`;
+function decideWhoWon() {
+    if(playerScore > computerScore) {
+        return 'You Won'
+    } else {
+        return 'You Lost'
+    }
 }
 
-btnRock.addEventListener('click', () => {play('Rock');});
+function stateAbsoluteWinner() {
+        overlay.style.display = 'block';
+        winnerPara.textContent = decideWhoWon();
+        btnRestart.addEventListener('click', () => {window.location.reload();})
+        overlay.addEventListener('click', () => {overlay.style.display = 'none';})
+}
 
+function play(playerSelection) {
+    if (playerScore >= 5 || computerScore >= 5) {
+        stateAbsoluteWinner()
+    } else {
+        let computerSelection = computerPlay();
+        scoreMessage.textContent = playRound(playerSelection, computerSelection);
+        scoreInfo.textContent = setWinner();
+        changeChosenSigns(playerSelection, computerSelection);
+        pcScore.textContent = `Computer: ${computerScore}`;
+        userScore.textContent = `Player: ${playerScore}`;
+    }
+}
+ 
+btnRock.addEventListener('click', () => {play('Rock');});
+    
 btnPaper.addEventListener('click', () => {play('Paper')});
 
 btnScissors.addEventListener('click', () => {play('Scissors')});
