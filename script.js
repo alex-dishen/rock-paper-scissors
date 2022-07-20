@@ -35,7 +35,7 @@ function playRound(playerSelection, computerSelection) {
             return `You and computer chose ${computerSelection}.`;
         } 
 }
-
+// Connections to HTML page
 const scoreInfo = document.querySelector('.scoreinfo');
 const scoreMessage = document.querySelector('.scoremessage');
 const pcChoice = document.querySelector('.pcsign');
@@ -93,6 +93,7 @@ function decideWhoWon() {
     }
 }
 
+// Opens a window who won and asks to restart the game
 function stateAbsoluteWinner() {
         overlay.style.display = 'block';
         modal.classList.add('active')
@@ -104,27 +105,23 @@ function stateAbsoluteWinner() {
         })
 }
 
+// Runs main logic of this app
 function play(playerSelection) {
-    // if (playerScore >= 5 || computerScore >= 5) {
-    //     stateAbsoluteWinner();
-    // } else {        
+    if (playerScore < 5 && computerScore < 5) {
         let computerSelection = computerPlay();
         scoreMessage.textContent = playRound(playerSelection, computerSelection);
         scoreInfo.textContent = setWinner();
         changeChosenSigns(playerSelection, computerSelection);
         pcScore.textContent = `Computer: ${computerScore}`;
         userScore.textContent = `Player: ${playerScore}`;
-    // }
+    } 
+    if (playerScore >= 5 || computerScore >= 5) {
+        stateAbsoluteWinner();
+    }
 }
 
-if ((playerScore >= 5) || (computerScore >= 5)) {
-    btnRock.addEventListener('click', stateAbsoluteWinner);
-    btnPaper.addEventListener('click', stateAbsoluteWinner);   
-    btnScissors.addEventListener('click', stateAbsoluteWinner);
-} else {
-    btnRock.addEventListener('click', () => {play('Rock')});
+btnRock.addEventListener('click', () => {play('Rock')});
     
 btnPaper.addEventListener('click', () => {play('Paper')});
         
 btnScissors.addEventListener('click', () => {play('Scissors')});
-}
