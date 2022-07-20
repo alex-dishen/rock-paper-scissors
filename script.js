@@ -8,9 +8,6 @@ function computerPlay() {
 } 
 
 function playRound(playerSelection, computerSelection) {
-    playerSelection = playerSelection[0].toLocaleUpperCase() + 
-                      playerSelection.slice(1);
-
     if (
         playerSelection === 'Rock' && computerSelection === 'Scissors' ||
         playerSelection === 'Paper' && computerSelection === 'Rock' || 
@@ -65,13 +62,13 @@ function play(playerSelection) {
     scoreInfo.textContent = setWinner();
     
     switch (playerSelection) {
-        case "rock":
+        case "Rock":
             playerChoice.setAttribute("src", "./img/rock-hand.png");
             break;
-        case "paper": 
+        case "Paper": 
             playerChoice.setAttribute("src", "./img/paper-hand.png");
             break;
-        case "scissors":
+        case "Scissors":
             playerChoice.setAttribute("src", "./img/scissors-hand.png");
             break;
     }
@@ -91,8 +88,8 @@ function play(playerSelection) {
     userScore.textContent = `Player: ${playerScore}`;
 }
 
-btnRock.addEventListener('click', () => {play('rock');})
+btnRock.addEventListener('click', () => {play('Rock');})
 
-btnPaper.addEventListener('click', () => {play('paper')})
+btnPaper.addEventListener('click', () => {play('Paper')})
 
-btnScissors.addEventListener('click', () => {play('scissors')})
+btnScissors.addEventListener('click', () => {play('Scissors')})
