@@ -56,11 +56,7 @@ function setWinner() {
       }
 }
 
-function play(playerSelection) {
-    let computerSelection = computerPlay();
-    scoreMessage.textContent = playRound(playerSelection, computerSelection);
-    scoreInfo.textContent = setWinner();
-    
+function changeChosenSigns(playerSelection, computerSelection) {
     switch (playerSelection) {
         case "Rock":
             playerChoice.setAttribute("src", "./img/rock-hand.png");
@@ -83,13 +79,19 @@ function play(playerSelection) {
             pcChoice.setAttribute("src", "./img/scissors-hand.png");
             break;
     }
+}
 
+function play(playerSelection) {
+    let computerSelection = computerPlay();
+    scoreMessage.textContent = playRound(playerSelection, computerSelection);
+    scoreInfo.textContent = setWinner();
+    changeChosenSigns(playerSelection, computerSelection);
     pcScore.textContent = `Computer: ${computerScore}`;
     userScore.textContent = `Player: ${playerScore}`;
 }
 
-btnRock.addEventListener('click', () => {play('Rock');})
+btnRock.addEventListener('click', () => {play('Rock');});
 
-btnPaper.addEventListener('click', () => {play('Paper')})
+btnPaper.addEventListener('click', () => {play('Paper')});
 
-btnScissors.addEventListener('click', () => {play('Scissors')})
+btnScissors.addEventListener('click', () => {play('Scissors')});
