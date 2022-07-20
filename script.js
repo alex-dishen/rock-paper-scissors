@@ -105,20 +105,26 @@ function stateAbsoluteWinner() {
 }
 
 function play(playerSelection) {
-    if (playerScore >= 5 || computerScore >= 5) {
-        stateAbsoluteWinner()
-    } else {
+    // if (playerScore >= 5 || computerScore >= 5) {
+    //     stateAbsoluteWinner();
+    // } else {        
         let computerSelection = computerPlay();
         scoreMessage.textContent = playRound(playerSelection, computerSelection);
         scoreInfo.textContent = setWinner();
         changeChosenSigns(playerSelection, computerSelection);
         pcScore.textContent = `Computer: ${computerScore}`;
         userScore.textContent = `Player: ${playerScore}`;
-    }
+    // }
 }
- 
-btnRock.addEventListener('click', () => {play('Rock');});
+
+if ((playerScore >= 5) || (computerScore >= 5)) {
+    btnRock.addEventListener('click', stateAbsoluteWinner);
+    btnPaper.addEventListener('click', stateAbsoluteWinner);   
+    btnScissors.addEventListener('click', stateAbsoluteWinner);
+} else {
+    btnRock.addEventListener('click', () => {play('Rock')});
     
 btnPaper.addEventListener('click', () => {play('Paper')});
-
+        
 btnScissors.addEventListener('click', () => {play('Scissors')});
+}
