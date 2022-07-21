@@ -63,24 +63,24 @@ function setWinner() {
 function changeChosenSigns(playerSelection, computerSelection) {
     switch (playerSelection) {
         case "Rock":
-            playerChoice.setAttribute("src", "./img/rock-hand.png");
+            playerChoice.setAttribute('src', './img/rock-hand.png');
             break;
         case "Paper": 
-            playerChoice.setAttribute("src", "./img/paper-hand.png");
+            playerChoice.setAttribute('src', './img/paper-hand.png');
             break;
         case "Scissors":
-            playerChoice.setAttribute("src", "./img/scissors-hand.png");
+            playerChoice.setAttribute('src', './img/scissors-hand.png');
             break;
     }
     switch (computerSelection) {
         case "Rock":
-            pcChoice.setAttribute("src", "./img/rock-hand.png");
+            pcChoice.setAttribute('src', './img/rock-hand.png');
             break;
         case "Paper": 
-            pcChoice.setAttribute("src", "./img/paper-hand.png");
+            pcChoice.setAttribute('src', './img/paper-hand.png');
             break;
         case "Scissors":
-            pcChoice.setAttribute("src", "./img/scissors-hand.png");
+            pcChoice.setAttribute('src', './img/scissors-hand.png');
             break;
     }
 }
@@ -93,16 +93,30 @@ function decideWhoWon() {
     }
 }
 
+function removeWinnerWindow() {
+    overlay.style.display = 'none';
+    modal.classList.remove('active');
+}
+
+function resetGame() {
+    scoreInfo.textContent = 'Choose your weapon';
+    scoreMessage.textContent = 'First to score 5 points wins the game';
+    playerChoice.setAttribute('src', 'img/question-mark.png');
+    pcChoice.setAttribute('src', 'img/question-mark.png');
+    userScore.textContent = 'Player: 0';
+    pcScore.textContent = 'Computer: 0';
+    playerScore = 0;
+    computerScore = 0;
+    removeWinnerWindow();
+}
+
 // Opens a window who won and asks to restart the game
 function stateAbsoluteWinner() {
         overlay.style.display = 'block';
         modal.classList.add('active')
         winnerPara.textContent = decideWhoWon();
-        btnRestart.addEventListener('click', () => {window.location.reload();})
-        overlay.addEventListener('click', () => {
-            overlay.style.display = 'none';
-            modal.classList.remove('active');
-        })
+        btnRestart.addEventListener('click', resetGame);
+        overlay.addEventListener('click', removeWinnerWindow)
 }
 
 // Runs main logic of this app

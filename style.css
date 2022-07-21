@@ -75,6 +75,7 @@ p {
 .buttons {
     display: flex;
     gap: 50px;
+    margin-bottom: 45px;
 }
 
 .rock, .paper, .scissors {
@@ -119,6 +120,7 @@ footer {
     text-align: center;
     padding: 10px;
     font-size: 18px;
+    padding-bottom: 22px;
 }
 
 .github {
