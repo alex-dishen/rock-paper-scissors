@@ -87,15 +87,15 @@ p {
 }
 
 .rock {
-    background-image: url(/img/rock-hand.png);
+    background-image: url(img/rock-hand.png);
 }
 
 .paper {
-    background-image: url(/img/paper-hand.png);
+    background-image: url(img/paper-hand.png);
 }
 
 .scissors {
-    background-image: url(/img/scissors-hand.png);
+    background-image: url(img/scissors-hand.png);
 }
 
 .rock:hover, .paper:hover {
